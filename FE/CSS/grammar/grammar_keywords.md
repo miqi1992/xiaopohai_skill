@@ -17,7 +17,8 @@
     <div >测试二</div><span>文字</span>
 </div>
 ```
- 
+
+<iframe style="line-height: 1.5; width: 100%; height: 80px;" src="https://demo.xiaohuochai.site/css/base/b6.html" frameborder="0" width="320" height="240"></iframe>  
 
 ### inherit
 &emsp;&emsp;CSS中的每个属性都有一个特定值"inherit",其含义是指定继承父元素的相应属性，使用inherit一方面在代码上能地表明要继承于父元素的样式属性，另一方面也使子元素继承了那些不会被自动继承的属性  
@@ -44,6 +45,7 @@
 </div>
 ```
 
+<iframe style="width: 100%; height: 130px;" src="https://demo.xiaohuochai.site/css/base/b7.html" frameborder="0" width="320" height="240"></iframe>
 
 #### unset
 &emsp;&emsp;unset相对于initial和inherit而言，相对复杂一点。表示如果该属性默认可继承，则值为inherit;否则值为initial。实际上，设置unset相当于不设置  
@@ -89,6 +91,7 @@ writing-mode
 </div>
 ```
 
+<iframe style="width: 100%; height: 80px;" src="https://demo.xiaohuochai.site/css/base/b8.html" frameborder="0" width="320" height="240"></iframe>
 
 #### revert
 &emsp;&emsp;表示样式表中定义的元素属性的默认值。若用户定义样式表中显示设置，则按此设置；否则，按照浏览器定义样式表的样式设置；否则，等价于unset  
@@ -135,3 +138,5 @@ border:1px solid black;padding:20px;color:red;
 ```
 border:none;padding:0;color:red;
 ```
+
+<iframe style="width: 100%; height: 220px;" src="https://demo.xiaohuochai.site/css/base/b9.html" frameborder="0" width="320" height="240"></iframe>
