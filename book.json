@@ -43,7 +43,7 @@
             "prefix" : "http://gitbook.miqi1992.com"
         },
         "edit-link": {
-            "base": "https://github.com/miqi1992/cq-skill/edit/master",
+            "base": "https://github.com/miqi1992/xiaopohai-skill/edit/master",
             "label": "编辑此页"
         },
         "anchor-navigation-ex": {
@@ -61,7 +61,7 @@
         "github-buttons" : {
             "buttons" : [{
                 "user" : "miqi1992",
-                "repo" : "cq-skill",
+                "repo" : "xiaopohai-skill",
                 "type" : "star",
                 "size" : "small"
             }]
@@ -76,8 +76,8 @@
             ]
         },
         "donate": {
-            "wechat": "http://localhost:4000/tools/images/微信收款.png",
-            "alipay": "http://localhost:4000/tools/images/支付宝.png",
+            "wechat": "https://miqi1992.gitbooks.io/xiaopohai-skill/content/tools/images/微信收款.png",
+            "alipay": "https://miqi1992.gitbooks.io/xiaopohai-skill/content/tools/images/支付宝.png",
             "title": "",
             "button": "赏",
             "alipayText": "支付宝打赏",
