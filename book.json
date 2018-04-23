@@ -17,12 +17,6 @@
         }
     },
     "plugins": [
-        "-search",
-        "-lunr",
-        "-livereload",
-        "search-plus",
-        "back-to-top-button",
-        "toc2",
         "splitter",
         "github",
         "-sharing",
@@ -41,12 +35,8 @@
         "donate"
     ],
     "pluginsConfig": {
-        "toc2": {
-            "addClass": true,
-            "className": "toc"
-        },
         "github": {
-            "url": "https://github.com/miqi1992/cq-skill.git"
+            "url": "https://github.com/miqi1992/xiaopohai-skill.git"
         },
         "expandable-chapters":{},
         "sitemap-general" : {
