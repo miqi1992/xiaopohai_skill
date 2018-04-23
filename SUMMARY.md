@@ -5,4 +5,5 @@
   * [CSS](FE/CSS/README.md)
     * 基本语法
       * [CSS引入](FE/CSS/grammar/grammar_intro.md)
+      * [选择器](FE/CSS/grammar/xuan-ze-qi.md)
 
