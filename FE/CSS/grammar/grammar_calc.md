@@ -6,6 +6,7 @@
 &emsp;&emsp;兼容性：IE8-/safari5.1-、ios5.1-、android4.3-不支持，android4.4-4.4.4.4只支持加法和减法。IE9不支持用于background-position
 
 > +和-运算符两边一定要有空白符
+
 ```html
 <style>
 .test1{
