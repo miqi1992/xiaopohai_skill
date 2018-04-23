@@ -21,17 +21,13 @@
         "github",
         "-sharing",
         "expandable-chapters",
-        "sitemap-general",
         "edit-link",
         "anchor-navigation-ex",
-        "sectionx",
         "tbfed-pagefooter",
         "github-buttons",
-        "alerts",
         "favicon",
         "-highlight", 
         "prism", 
-        "prism-themes",
         "donate"
     ],
     "pluginsConfig": {
@@ -39,9 +35,6 @@
             "url": "https://github.com/miqi1992/xiaopohai-skill.git"
         },
         "expandable-chapters":{},
-        "sitemap-general" : {
-            "prefix" : "http://gitbook.miqi1992.com"
-        },
         "edit-link": {
             "base": "https://github.com/miqi1992/xiaopohai-skill/edit/master",
             "label": "编辑此页"
@@ -51,9 +44,6 @@
             "tocLevel1Icon": "fa fa-hand-o-right",
             "tocLevel2Icon": "fa fa-hand-o-right",
             "tocLevel3Icon": "fa fa-hand-o-right"
-        },
-        "sectionx": {
-            "tab" : "b"
         },
         "tbfed-pagefooter" : {
             "copyright":"好的代码像粥一样，都是时间熬出来的"
