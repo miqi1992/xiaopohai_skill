@@ -9,6 +9,7 @@
       * [层叠](FE/CSS/grammar/grammar_cascading.md)
       * [单位](FE/CSS/grammar/grammar_unit.md)
       * [样式关键字](FE/CSS/grammar/grammar_calc.md)
+      * [可继承关键字](FE/CSS/grammar/grammar_inherit.md)
 
 
 
