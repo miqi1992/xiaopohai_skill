@@ -1,0 +1,97 @@
+{
+    "title": "小破孩的个人技能",
+    "description": "好的代码像粥一样，都是时间熬出来的",
+    "author": "wudao520",
+    "root": ".",
+    "language": "zh-hans",
+    "styles" : {
+        "website" : "tools/css/website.css",
+        "ebook" : "tools/css/ebook.css",
+        "pdf" : "tools/css/pdf.css",
+        "mobi" : "tools/css/mobi.css",
+        "epub" : "tools/css/epub.css"
+    },
+    "links": {
+        "sidebar": {
+            "博客园": "http://www.cnblogs.com/miqi1992/"
+        }
+    },
+    "plugins": [
+        "-search",
+        "-lunr",
+        "-livereload",
+        "search-plus",
+        "back-to-top-button",
+        "toc2",
+        "splitter",
+        "github",
+        "-sharing",
+        "expandable-chapters",
+        "sitemap-general",
+        "edit-link",
+        "anchor-navigation-ex",
+        "sectionx",
+        "tbfed-pagefooter",
+        "github-buttons",
+        "alerts",
+        "favicon",
+        "-highlight", 
+        "prism", 
+        "prism-themes",
+        "donate"
+    ],
+    "pluginsConfig": {
+        "toc2": {
+            "addClass": true,
+            "className": "toc"
+        },
+        "github": {
+            "url": "https://github.com/miqi1992/cq-skill.git"
+        },
+        "expandable-chapters":{},
+        "sitemap-general" : {
+            "prefix" : "http://gitbook.miqi1992.com"
+        },
+        "edit-link": {
+            "base": "https://github.com/miqi1992/cq-skill/edit/master",
+            "label": "编辑此页"
+        },
+        "anchor-navigation-ex": {
+            "isShowTocTitleIcon": true,
+            "tocLevel1Icon": "fa fa-hand-o-right",
+            "tocLevel2Icon": "fa fa-hand-o-right",
+            "tocLevel3Icon": "fa fa-hand-o-right"
+        },
+        "sectionx": {
+            "tab" : "b"
+        },
+        "tbfed-pagefooter" : {
+            "copyright":"好的代码像粥一样，都是时间熬出来的"
+        },
+        "github-buttons" : {
+            "buttons" : [{
+                "user" : "miqi1992",
+                "repo" : "cq-skill",
+                "type" : "star",
+                "size" : "small"
+            }]
+        },
+        "favicon": {
+            "shortcut": "favicon.ico",
+            "bookmark": "favicon.ico"
+        },
+        "prism": {
+            "css": [
+                "prismjs/themes/prism-solarizedlight.css"
+            ]
+        },
+        "donate": {
+            "wechat": "http://localhost:4000/tools/images/微信收款.png",
+            "alipay": "http://localhost:4000/tools/images/支付宝.png",
+            "title": "",
+            "button": "赏",
+            "alipayText": "支付宝打赏",
+            "wechatText": "微信打赏"
+        }
+    }
+}
