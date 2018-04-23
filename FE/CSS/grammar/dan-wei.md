@@ -28,3 +28,10 @@
 #### 派卡pc(picas)
 
 1pc = 12pt = 1/6in = 1/6\*96px = 16px
+
+### 字体相关相对长度单位
+
+em、ex、ch、rem是字体相关的相对长度单位
+
+#### em
+em表示元素的font-size属性的计算值，如果用于font-size属性本身，相对于父元素的font-size;若用于其它属性，相对于本身元素的font-size
