@@ -4,9 +4,7 @@
 
 好的代码像粥一样，都是时间熬出来的。
 
-2018年4月21日12:16:22
-
 
 ## 参考
-1. [小破孩的个人技能树](https://miqi1992.gitbooks.io/cq-skill/content/)
+1. [小破孩的个人技能树](https://miqi1992.gitbooks.io/xiaopohai-skill/content/)
 
