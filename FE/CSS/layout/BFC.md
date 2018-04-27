@@ -66,7 +66,7 @@
 ## BFC
 &emsp;&emsp;在解释BFC之前，先说一下文档流。我们常说的文档流其实分为定位流、浮动流和普通流。而普通流其实就是指BFC中的FC。FC是formating context的首字母缩写，直译过来就是格式化上下文，它是页面中的一块渲染区域，有一套渲染规则，决定了其子元素如何布局，以及和其他元素之间的关系和作用。常见的FC有BFC、IFC，还有GFC和FFC。BFC是block formating context，也就是块级格式化上下文，是用于布局块级盒子的一块渲染区域。BFC特性表现为内部元素再怎么翻江倒海，都不影响外部的元素。  
 
-## 触发条件
+### 触发条件
 
 满足下列条件之一就可触发BFC  
 【1】 根元素，即HTML元素  
@@ -75,13 +75,12 @@
 【4】 display的值为`inline-block`、`table-cell`、`table-caption`  
 【5】 position的值为`absolute`或`fixed`  
 
-## 作用
+### 作用
 &emsp;&emsp;BFC是页面上的一个隔离的独立容器，容器里面的子元素不会影响到外面元素，反之亦然。它与普通的块框类似，但不同之处在于：  
 
 1. 可以阻止元素被浮动元素覆盖
-&lt;说明&gt;通过改变内容为BFC背景为红色的盒子的属性值，使其成为BFC，以此阻止被绿色的浮动盒子覆盖
+&lt;说明&gt;通过改变内容为BFC背景为红色的盒子的属性值，使其成为BFC，以此阻止被绿色的浮动盒子覆盖  
 <iframe style="line-height: 1.5; width: 100%; height: 437px;" src="https://demo.xiaohuochai.site/css/bfc/b1.html" frameborder="0" width="320" height="240"></iframe>
-
 
 2. 可以包含浮动元素
 &lt;说明&gt;通过改变高度塌陷的黑色边框的盒子的属性值，使其成为BFC，以此来包含绿色的浮动盒子。  
@@ -90,11 +89,11 @@
 3. 属于同一个BFC的两个相邻块级子元素的上下margin会发生重叠，(设置writing-mode:tb-rl时，水平margin会发生重叠)。所以当两个相邻块级子元素
 分属于不同的BFC时可以组织margin重叠
 
-&lt;说明&gt;淡红色背景的块级盒子二的外面包一个div,通过改变此div的属性使红色盒子与绿色盒子分属于不同的BFC，以此来组织margin重叠。  
+&emsp;&emsp;&lt;说明&gt;淡红色背景的块级盒子二的外面包一个div,通过改变此div的属性使红色盒子与绿色盒子分属于不同的BFC，以此来组织margin重叠。  
 
 <iframe style="width: 100%; height: 453px;" src="https://demo.xiaohuochai.site/css/bfc/b3.html" frameborder="0" width="320" height="240"></iframe>
 
-## BFC下的自适应布局
+### BFC下的自适应布局
 如果是上面介绍的流体特征`div`，当其和浮动元素当兄弟的时候，是覆盖的关系，而如果把元素BFC之后，元素就不会与浮动重叠。
 <iframe src="http://www.zhangxinxu.com/study/201502/flow-to-bfc.html" width="100%" height="180" frameborder="0"></iframe>
 
@@ -104,7 +103,7 @@
 
 BFC之后的元素依然保留原本的流体特性依然。虽然不与浮动交集，自动退避浮动元素宽度的巨鹿，然本身作为普通元素的流动性依然存在，反应在布局上就是自动填满出去浮动内容以外的剩余空间。  
 
-### BFC自适应布局模块间的间距
+#### BFC自适应布局模块间的间距
 以下面例子，设置文本与图片之间的距离为20px，第一想法，给文本加个`margin-left: 20px`,CSS代码参考如下：  
 
 ```css
@@ -146,14 +145,14 @@ BFC元素和浮动元素还是紧靠在一起，与我们的初想不太一样�
 }
 ```
 
-### 与纯流体特性布局的优势
+#### 与纯流体特性布局的优势
 BFC自适应布局有如下2个有点：  
 1. 自适应内容由于封闭，更健壮，容错性强。比方说，内部`clear:both`不会与兄弟`float`产生矛盾。而纯流体布局，`clear:both`会让后面内容无法和`float`元素在一个水平上，产生布局问题。  
 2. 自适应内容自动填满浮动以为区域，无须关心浮动元素宽度，可以整站大规模应用。而纯流体布局，需要大小不确定的`margin`/`padding`等值撑开合适间距，无法CSS组件化。  
 
 <iframe src="http://www.zhangxinxu.com/study/201502/flow-to-bfc-animation.html" width="400" height="216" frameborder="0"></iframe>
 
-### BFC元素家族与自适应布局面面观
+#### BFC元素家族与自适应布局面面观
 理论上，任何BFC元素和浮动一起使用的时候，都可以实现自动填充的自适应布局。  
 
 但是，由于绝大多数的触发BFC的属性自身有一些古怪的特性，所以，在实际操作的时候，能兼顾流体特征和BFC特性来实现自适应布局的属性并不多。  
