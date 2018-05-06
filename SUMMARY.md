@@ -19,4 +19,8 @@
         * 普通流
             - [display](FE/CSS/layout/display.md)
             - [BFC](FE/CSS/layout/BFC.md)
+            - [视觉格式化](FE/CSS/layout/visualFormat.md)
+
+* [后端技术](BE/README.md)
+    * [java](FE/java/README.md) 
 * [参考资料](resources.md)
