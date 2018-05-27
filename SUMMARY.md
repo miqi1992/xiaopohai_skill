@@ -22,5 +22,6 @@
             - [视觉格式化](FE/CSS/layout/visualFormat.md)
 
 * [后端技术](BE/README.md)
-    * [java](FE/java/README.md) 
+    * [java](BE/java/README.md) 
+        * [mybatis](BE/java/Mybatis/README.md) 
 * [参考资料](resources.md)

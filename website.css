@@ -1,0 +1,38 @@
+h1, h2{
+	border-bottom: 1px solid red;
+}
+
+
+footer{
+	width: 100%;
+	margin: auto;
+	text-align: center
+}
+
+span.copyright{
+	width: 520px;
+	overflow: hidden;
+	text-overflow:clip; 
+	text-overflow: clip;/* IE/Safari */ 
+	-ms-text-overflow: clip; 
+	-o-text-overflow: clip;/* Opera */ 
+	white-space: nowrap;
+	display: block;
+	color: blue;
+	font-size: large;
+	display: block;
+    margin: 40px 40px 40px 0;
+    font-size: 30px;
+    color: #f1ebe5;
+    text-shadow: 0 8px 9px #c4b59d, 0px -2px 1px #fff;
+    font-weight: bold;
+    text-align: center;
+    background: linear-gradient(to bottom, #ece4d9 0%,#e9dfd1 100%);
+    border-radius: 10px;
+    line-height: 60px;
+    cursor: default;
+}
+
+span.footer-modification{
+	display: none;
+}
