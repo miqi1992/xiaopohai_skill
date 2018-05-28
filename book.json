@@ -5,7 +5,7 @@
     "root": ".",
     "language": "zh-hans",
     "styles" : {
-        "website" : "tools/css/website.css",
+        "website" : "website.css",
         "ebook" : "tools/css/ebook.css",
         "pdf" : "tools/css/pdf.css",
         "mobi" : "tools/css/mobi.css",
