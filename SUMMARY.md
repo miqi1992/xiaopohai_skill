@@ -22,6 +22,10 @@
             - [视觉格式化](FE/CSS/layout/visualFormat.md)
 
 * [后端技术](BE/README.md)
-    * [java](BE/java/README.md) 
-        * [mybatis](BE/java/Mybatis/README.md) 
+    * [java](BE/java/README.md)
+        * [mybatis](BE/java/Mybatis/README.md)
+            * [mybatis_原生态jdbc问题总结](BE/java/Mybatis/01.mybatis_jdbc.md)
+            * [mybatis_框架原理](BE/java/Mybatis/02.mybatis_process.md)
+            * [mybatis_使用idea搭建开发环境](BE/java/Mybatis/03.mybatis_environment_idea.md)
+            * [mybatis_入门程序_根据id查询用户](BE/java/Mybatis/04.mybatis_case_finduserbyid.md)
 * [参考资料](resources.md)
