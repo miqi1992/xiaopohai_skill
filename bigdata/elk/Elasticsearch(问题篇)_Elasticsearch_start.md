@@ -1,0 +1,1 @@
+![Elasticsearch启动错误处理方法](https://www.cnblogs.com/configure/p/7479988.html)
