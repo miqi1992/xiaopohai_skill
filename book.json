@@ -17,6 +17,8 @@
         }
     },
     "plugins": [
+        "-search",
+        "fontsettings",
         "splitter",
         "github",
         "-sharing",
@@ -27,7 +29,6 @@
         "github-buttons",
         "favicon",
         "-highlight", 
-        "prism", 
         "donate"
     ],
     "pluginsConfig": {
@@ -60,11 +61,7 @@
             "shortcut": "favicon.ico",
             "bookmark": "favicon.ico"
         },
-        "prism": {
-            "css": [
-                "prismjs/themes/prism-solarizedlight.css"
-            ]
-        },
+       
         "donate": {
             "wechat": "https://miqi1992.gitbooks.io/xiaopohai-skill/content/tools/images/微信收款.png",
             "alipay": "https://miqi1992.gitbooks.io/xiaopohai-skill/content/tools/images/支付宝.png",
