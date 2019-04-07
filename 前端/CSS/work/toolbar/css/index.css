@@ -1,0 +1,13 @@
+ul li a {
+  display: block;
+}
+
+ul li a {
+  display: block;
+  color: red;
+}
+ul li a:hover {
+  color: blue;
+}
+
+/*# sourceMappingURL=index.css.map */

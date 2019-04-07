@@ -1,0 +1,17 @@
+$color: red;
+
+ul li a {
+	display: block;
+}
+
+ul {
+	li {
+		a {
+			display: block;
+			color: $color;
+			&:hover {
+				color: blue;
+			}
+		}
+	}
+}
