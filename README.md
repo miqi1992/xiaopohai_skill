@@ -5,6 +5,19 @@
 好的代码像粥一样，都是时间熬出来的。
 
 
+## 小破孩的学习技能小册子
++ [说明]()  
++ [HTML]()  
++ [CSS]()  
++ [JS]()  
++ [HTTP]()  
++ [前端框架]()  
++ [前端工具]()  
++ [后端相关]()  
++ [参考资料]()
+
+
+
 ## 视频教程
 1. [2017黑马传智播客云计算大数据视频教程就业班hadoop/spark/redis](https://pan.baidu.com/s/1mOhdsf64ifWQSfXgK2qhpw) 密码:2n17
 2. [java资料](https://pan.baidu.com/s/1rxJHFsEnB4SeM1TnnpiywA) 密码：s83l
