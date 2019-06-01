@@ -279,7 +279,7 @@ Generic<String> generic1 = new Generic<String>("11111");
 [通配符T和？的区别](https://blog.csdn.net/woshizisezise/article/details/79374460)   
 [class<T>和class<?>区别](https://www.jianshu.com/p/95f349258afb)  
 
-### PECS原则  
+### 6.PECS原则  
 首先我们定义几个简单的类，下面我们将用到它：  
 ``` java
 class Fruit {}
@@ -304,3 +304,299 @@ public class Generics {
     }
 }
 ```
+
+对于是那个面的flist, Java编译器不允许我们add任何对象，为什么呢？对于这个问题我们不妨从编译器的角度去考虑。因为List<? extends Fruit> flist它自身可以有多重含义：  
+``` java
+List<? extends Fruit> flist = new ArrayList<Fruit>();
+List<? extends Fruit> flist = new ArrayList<Apple>();
+List<? extends Fruit> flist = new ArrayList<Orange>();
+```
+
+当我们尝试add一个Apple的时候，flist可能指向new ArrayList<Orange>();
+当我们尝试add一个Orange的时候，flist可能指向new ArrayList<Apple>();
+当我们尝试add一个Fruit的时候，这个Fruit可以使任何类型的Fruit，而flist可能指向某种特定类型的Fruit，编译器无法识别可能会报错。  
+
+**所以对于实现了<? extends T>的集合类只能将它实现为Producer向外提供(get)元素，而不能作为Consumer来对外获取(add)元素**
+
+如果我们要add元素应该怎么做呢？可以使用<? super T>:  
+``` java
+public class GenericWriting {
+    static List<Apple> apples = new ArrayList<Apple>();
+    static List<Fruit> fruit = new ArrayList<Fruit>();
+    static <T> void writeExact(List<T> list, T item) {
+        list.add(item);
+    }
+    static void f1() {
+        writeExact(apples, new Apple());
+        writeExact(fruit, new Apple());
+    }
+    static <T> void writeWithWildcard(List<? super T> list, T item) {
+        list.add(item);
+    }
+    static void f2() {
+        writeWithWildcard(apples, new Apple());
+        writeWithWildcard(fruit, new Apple());
+    }
+    public static void main(String[] args) {
+        f1(); f2();
+    }
+}
+```
+这样我们可以往容器里面添加元素了，但是使用super后不能从容器里面get元素，从编译器的角度考虑这个问题，对于List<? super Apple> list,它可以有下面几种含义：  
+``` java
+List<? super Apple> list = new ArrayList<Apple>();
+List<? super Apple> list = new ArrayList<Fruit>();
+List<? super Apple> list = new ArrayList<Object>();
+```
+
+所以对于实现了<? super T>的集合类只能将它视为Consuer消费(add)元素，而不能作为Producer对外获取(get)元素。  
+在Java集合类中，我们可以发现通常会将两者结合起来一起用，比如像下面这样：  
+``` java
+public class Collections {
+    public static <T> void copy(List<? super T> dest, List<? extends T> src) {
+        for (int i=0; i<src.size(); i++)
+            dest.set(i, src.get(i));
+    }
+}
+```
+
+
+### 7.类型擦除
+
+类型擦除就是说Java泛型只能用于在编译期间的静态类型检查，然后编译器生成的代码会擦除响应的类型信息，这样到了运行期间实际上JVM根本就知道泛型所代表的具体类型。这样做的目的是因为Java泛型是1.5之后才引入的，为了保持向下的兼容性，所以只能作类型擦除类来兼容以前的非泛型代码。  
+
+泛型擦除到底是什么，开看一个简单的例子：  
+``` java
+public class Node<T> {
+    private T data;
+    private Node<T> next;
+    public Node(T data, Node<T> next) {
+        this.data = data;
+        this.next = next;
+    }
+    public T getData() { return data; }
+    // ...
+}
+```
+
+编译器做完相应的类型检查之后，实际上到了运行期间上面这段代码实际上将转换成：  
+``` java
+public class Node {
+    private Object data;
+    private Node next;
+    public Node(Object data, Node next) {
+        this.data = data;
+        this.next = next;
+    }
+    public Object getData() { return data; }
+    // ...
+}
+```
+
+这意味着不管我们声明Node<String>还是Node<Integer>，到了运行期间，JVM统统视为Node<Object>。有没有什么办法可以解决这个问题呢？这就需要我们自己重新设置bounds了，将上面的代码修改成下面这样：  
+``` java
+public class Node<T extends Comparable<T>> {
+    private T data;
+    private Node<T> next;
+    public Node(T data, Node<T> next) {
+        this.data = data;
+        this.next = next;
+    }
+    public T getData() { return data; }
+    // ...
+}
+```
+
+这样编译器就会将T出现的地方替换成Comparable而不再是默认的Object了：  
+``` java
+public class Node {
+    private Comparable data;
+    private Node next;
+    public Node(Comparable data, Node next) {
+        this.data = data;
+        this.next = next;
+    }
+    public Comparable getData() { return data; }
+    // ...
+}
+```
+
+### 8.泛型使用的几个限制  
+Java泛型由于类型擦除的存在，会存在一些使用限制：  
+**1. Java泛型不能使用基本类型**
+使用基本类型的泛型会编译出错，代码如下：  
+``` java
+List<int> list = new List<int>();// 编译前类型检查报错
+```
+
+**2. Java泛型不运行进行直接实例化**  
+错误代码如下：  
+``` java
+<T> void test(T t){
+    t = new T();//编译前类型检查报错
+}
+```
+
+实例化的两种方法：  
+1. 通过集合来保存泛型对应的实例  
+``` java
+public class DbHelper {
+    private static final DbHelper instance;
+
+    static {
+        instance = new DbHelper();
+    }
+
+    private DbHelper() {
+    }
+
+    private Map<Class<?>, ChangedListener> changedListeners = new HashMap<>();
+
+    public <Model extends BaseModel> ChangedListener getListener(Class<Model> modelClass) {
+        if (changedListeners.containsKey(modelClass)) {
+            return changedListeners.get(modelClass);
+        }
+        return null;
+    }
+
+    public <Model extends BaseModel> void addChangedListener(final Class<Model> tClass,
+                                                             ChangedListener<Model> listener) {
+        ChangedListener changedListener = getListener(tClass);
+        // 添加到中的Map
+        changedListeners.put(tClass, changedListener);
+    }
+
+    public interface ChangedListener<Data extends BaseModel> {
+        void onDataSave(Data... list);
+
+        void onDataDelete(Data... list);
+    }
+}
+```
+
+2. 通过反射来实例化泛型类型  
+``` java
+public class GenericInstance {
+    public static <T> T createModelInstance(Class<T> tClass) {
+        try {
+            // 获取直接父类的类型Type
+            Type superClass = tClass.getGenericSuperclass();
+            // 调用getActualTypeArguments()方法获得实际绑定的类型
+            Type type = ((ParameterizedType) superClass).getActualTypeArguments()[0];
+            Class<?> clazz = getRawType(type);
+            return (T) clazz.newInstance();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    // type不能直接实例化对象，通过type获取class的类型，然后实例化对象
+    private static Class<?> getRawType(Type type) {
+        if (type instanceof Class) {
+            return (Class) type;
+        } else if (type instanceof ParameterizedType) {
+            ParameterizedType parameterizedType = (ParameterizedType) type;
+            Type rawType = parameterizedType.getRawType();
+            return (Class) rawType;
+        } else if (type instanceof GenericArrayType) {
+            Type componentType = ((GenericArrayType) type).getGenericComponentType();
+            return Array.newInstance(getRawType(componentType), 0).getClass();
+        } else if (type instanceof TypeVariable) {
+            return Object.class;
+        } else if (type instanceof WildcardType) {
+            return getRawType(((WildcardType) type).getUpperBounds()[0]);
+        } else {
+            String className = type == null ? "null" : type.getClass().getName();
+            throw new IllegalArgumentException("Expected a Class, ParameterizedType, or GenericArrayType, but <"
+                    + type + "> is of type " + className);
+        }
+    }
+}
+```
+**为了防止此类型转换错误的发生，Java禁止进行泛型实例化**
+
+3. Java泛型不运行进行静态化  
+参考下面的代码：  
+``` java
+class StaticGeneric<T>{
+    private static T t;// 编译前类型检查报错
+
+    public static T getT() {// 编译前类型检查报错
+        return t;
+    }
+}
+```
+
+静态变量在类中共享，而泛型类型是不确定的，因此编译器无法确定要使用的类型，所以不运行进行静态化。  
+
+4. Java泛型不允许直接进行类型转换(通配符可以)  
+```java 
+List<Integer> integerList = new ArrayList<Integer>();
+List<Double> doubleList = new ArrayList<Double>();
+//不能直接进行类型转换，类型检查报错
+integerList = doubleList;
+```
+虽然在编译期间integerList与doubleList都会经过类型擦除，但是这种类型转换违反了Java泛型降低类型转换安全隐患的设计初衷。当integerList中存储Interge元素，而doubleList中存储Double元素时，如果不限制类型转换，很容易产生ClassCastException异常。  
+但是通配符可以实现。  
+``` java
+<!--List<Integer> integerList = new ArrayList<Integer>();-->
+<!--List<Double> doubleList = new ArrayList<Double>();-->
+<!--//通过通配符进行类型转换-->
+<!--doubleList = integerList;-->
+static void cast(List<?> orgin, List<?> dest){
+    dest = orgin;
+}
+```
+
+5. Java泛型不允许直接使用instanceof运算符进行运行时类型检查(通配符可以)  
+直接使用instanceof运算符进行运行时类型检查：  
+``` java
+List<String> stringList = new ArrayList<String >();
+//不能直接使用instanceof，类型检查报错
+System.out.println(stringList instanceof ArrayList<Double>);
+```
+因为Java编译器在生成代码的时候会擦除所有相关泛型的类型信息，正如我们上面验证过的JVM在运行时期无法识别出ArrayList<Integer>和ArrayList<String>的之间的区别。
+而我们可以通过通配符的方式进行instanceof运行期检查：  
+``` java
+// 这个时候的类型检查没有意义
+System.out.println(stringList instanceof ArrayList<?>);
+```
+
+6. Java类型不允许创建确切类型的泛型数据(通配符可以)  
+创建整型泛型数据如下：  
+``` java
+//类型检查错误
+List<Integer>[] list = new ArrayList<Integer>[2];
+```
+
+可以通过通配符创建：  
+``` java
+Generic<?>[] generics = new Generic<?>[2];
+generics[0] = new Generic<Integer>(123);
+generics[1] = new Generic<String>("hello");
+for (Generic<?> generic : generics) {
+    System.out.println(generic.get());
+}
+```
+
+结果会正常打印出123和"hello"  
+
+7. Java泛型不允许作为参数进行重载  
+例如：  
+``` java
+public class GenericTest<T>{
+    void test(List<Integer> list){}
+    //不允许作为参数列表进行重载
+    void test(List<Double> list){}
+}
+```
+
+原因是：类型擦除后两个方法时一样的参数列表，无法重载。  
+
+## 参考
+1. [http://www.importnew.com/24029.html](http://www.importnew.com/24029.html)  
+2. [https://blog.csdn.net/s10461/article/details/53941091](https://blog.csdn.net/s10461/article/details/53941091)  
+3. [https://blog.csdn.net/unicorn97/article/details/81813712](https://blog.csdn.net/unicorn97/article/details/81813712)  
+4. [https://blog.csdn.net/hanchao5272/article/details/79317213](https://blog.csdn.net/hanchao5272/article/details/79317213)  
+5. [https://docs.oracle.com/javase/tutorial/extra/generics/intro.html](https://docs.oracle.com/javase/tutorial/extra/generics/intro.html)
