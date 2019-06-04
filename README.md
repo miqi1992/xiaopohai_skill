@@ -6,6 +6,8 @@
 
 ## 参考系列文章
 + java
+    + 设计模式
+        1. [设计模式](http://c.biancheng.net/view/1317.html) 
     + Spring
         1.[Spring框架学习笔记](https://blog.csdn.net/qq_32517251/article/category/6241856) 
 
